@@ -20,7 +20,7 @@
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type models:Family}"  ItemsSource="{Binding Families}" >
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />
+                            <!--<Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />-->
                             <TextBlock Text="{Binding Name}" />
                             <TextBlock Text=" [" Foreground="Blue" />
                             <TextBlock Text="{Binding Members.Count}" Foreground="Blue" />
@@ -29,7 +29,7 @@
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type models:FamilyMember}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />
+                            <!--<Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />-->
                             <TextBlock Text="{Binding Name}" />
                             <TextBlock Text=" (" Foreground="Green" />
                             <TextBlock Text="{Binding Age}" Foreground="Green" />
