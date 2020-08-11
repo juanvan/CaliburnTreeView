@@ -18,7 +18,7 @@
             </Grid.RowDefinitions>
             <TreeView Name="trvFamilies" ItemsSource="{Binding Families}" Grid.Row="0">
                 <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type models:Family}"  ItemsSource="{Binding Families}" >
+                    <HierarchicalDataTemplate DataType="{x:Type models:Family}"  ItemsSource="{Binding Members}" >
                         <StackPanel Orientation="Horizontal">
                             <!--<Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />-->
                             <TextBlock Text="{Binding Name}" />
