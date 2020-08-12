@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace CaliburnTreeView.ViewModels
 {
-   public class ShellViewModel : Screen// Conductor<object>
+   public class ShellViewModel : Conductor<Screen>.Collection.AllActive// Conductor<object>
     {
 		private ObservableCollection<Family> _families;
 
@@ -24,31 +24,37 @@ namespace CaliburnTreeView.ViewModels
 			}
 		}
 
-		private string name;
+		private FamilyTreeViewModel _familyTreeViewModel;
 
-		public string Name
+		public FamilyTreeViewModel FamilyTreeContent
 		{
-			get { return name; }
-			set { name = value;
-				NotifyOfPropertyChange(() => Name);
+			get { return _familyTreeViewModel; }
+			set 
+			{
+				_familyTreeViewModel = value;
+				NotifyOfPropertyChange(() => FamilyTreeContent);
 			}
 		}
 
 
 		public ShellViewModel()
         {
-			Families = new ObservableCollection<Family>();
+			FamilyTreeContent = IoC.Get<FamilyTreeViewModel>();
+			ActivateItemAsync(FamilyTreeContent, new System.Threading.CancellationToken());
+			ActivateItemAsync(IoC.Get<FamilyDetailViewModel>(), new System.Threading.CancellationToken());
+			//Families = new ObservableCollection<Family>();
 
-			Family family1 = new Family() { Name = "The Doe's" };
-			family1.Members.Add(new FamilyMember() { Name = "John Doe", Age = 42 });
-			family1.Members.Add(new FamilyMember() { Name = "Jane Doe", Age = 39 });
-			family1.Members.Add(new FamilyMember() { Name = "Sammy Doe", Age = 13 });
-			Families.Add(family1);
+			//Family family1 = new Family() { Name = "The Doe's" };
+			//family1.Members.Add(new FamilyMember() { Name = "John Doe", Age = 42 });
+			//family1.Members.Add(new FamilyMember() { Name = "Jane Doe", Age = 39 });
+			//family1.Members.Add(new FamilyMember() { Name = "Sammy Doe", Age = 13 });
+			//Families.Add(family1);
 
-			Family family2 = new Family() { Name = "The Moe's" };
-			family2.Members.Add(new FamilyMember() { Name = "Mark Moe", Age = 31 });
-			family2.Members.Add(new FamilyMember() { Name = "Norma Moe", Age = 28 });
-			Families.Add(family2);
+			//Family family2 = new Family() { Name = "The Moe's" };
+			//family2.Members.Add(new FamilyMember() { Name = "Mark Moe", Age = 31 });
+			//family2.Members.Add(new FamilyMember() { Name = "Norma Moe", Age = 28 });
+			//Families.Add(family2);
+
 			// ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new System.Threading.CancellationToken());
 		}
 
@@ -60,5 +66,10 @@ namespace CaliburnTreeView.ViewModels
 		{
 			MessageBox.Show(string.Format("Hello {0}!", name));
 		}
+		public void ViewPerson(object name)
+		{
+			MessageBox.Show(string.Format("Hello {0}!", name));
+		}
+
 	}
 }

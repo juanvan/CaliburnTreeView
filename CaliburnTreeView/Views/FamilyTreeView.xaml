@@ -10,18 +10,21 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
         <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <TreeView Name="trvFamilies" Grid.Row="0">
-            <!--ItemsSource="{Binding Families}"-->
-            <TreeView.Resources>
-                    <!--Trick is setting the ItemsSource twice for caliburn-->
-                    <HierarchicalDataTemplate DataType="{x:Type models:Family}" ItemsSource="{Binding Families}"> 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+       <TreeView Name="trvFamilies" cal:Message.Attach="[Event SelectedItemChanged] = [Action ViewPerson($this.SelectedItem)]" ItemsSource="{Binding Families}" Grid.Row="0">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type models:Family}"  ItemsSource="{Binding Members}" >
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />
+                        <Image>
+                            <Image.Source>
+                                <BitmapImage UriSource="/WpfTutorialSamples;component/Images/BetaIcon.png"/>
+                            </Image.Source>
+                        </Image>
+                        <!--<Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />-->
                             <TextBlock Text="{Binding Name}" />
                             <TextBlock Text=" [" Foreground="Blue" />
                             <TextBlock Text="{Binding Members.Count}" Foreground="Blue" />
@@ -30,7 +33,7 @@
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type models:FamilyMember}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />
+                            <!--<Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />-->
                             <TextBlock Text="{Binding Name}" />
                             <TextBlock Text=" (" Foreground="Green" />
                             <TextBlock Text="{Binding Age}" Foreground="Green" />
@@ -38,14 +41,8 @@
                         </StackPanel>
                     </DataTemplate>
                 </TreeView.Resources>
-            <!--<TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Members}">
-                    <TreeViewItem Header="{Binding}"/>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>-->
             </TreeView>
-        <Label Content="After TreeView" Grid.Row="1"/>
-        <!--<Button Content="Let's Talk" cal:Message.Attach="[Event MouseEnter] = [Action Talk('Hello', Name.Text)]; [Event  MouseLeave] = [Action Talk('Goodbye', Name.Text)]" />-->
-    </Grid>
+     
+      </Grid>
     
 </UserControl>

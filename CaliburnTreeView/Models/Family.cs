@@ -10,11 +10,11 @@ namespace CaliburnTreeView.Models
 	{
 		public Family()
 		{
-			this.Members = new ObservableCollection<FamilyMember>();
+			Members = new ObservableCollection<FamilyMember>();
 		}
 
 		public string Name { get; set; }
-
+		public ObservableCollection<Pet> Pets { get; set; }
 		public ObservableCollection<FamilyMember> Members { get; set; }
 		public override string ToString()
 		{
@@ -22,27 +22,20 @@ namespace CaliburnTreeView.Models
 		}
 	}
 
-	public class FamilyMember : PropertyChangedBase
+	public class Pet
 	{
-		private string _name;
+		public string Type { get; set; }
+		
+	}
 
-		public string Name
-		{
-			get { return _name; }
-			set { _name = value;
-				NotifyOfPropertyChange(() => Name);
-			}
-		}
+	public class PetDetail
+	{
+	}
 
-		private int _age;
-
-		public int Age
-		{
-			get { return _age; }
-			set { _age = value;
-				NotifyOfPropertyChange(() => Age);
-			}
-		}
+	public class FamilyMember 
+	{
+		public string Name { get; set; }
+		public int Age { get; set; }
 		public override string ToString()
 		{
 			return Name + " " + Age;
