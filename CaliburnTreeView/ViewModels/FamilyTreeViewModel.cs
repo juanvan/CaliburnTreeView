@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using CaliburnTreeView.Models;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace CaliburnTreeView.ViewModels
@@ -24,6 +25,7 @@ namespace CaliburnTreeView.ViewModels
 			Families = new BindingList<Family>();
 
 			Family family1 = new Family() { Name = "The Doe's" };
+			family1.Pets = new ObservableCollection<Pet>();
 			family1.Pets.Add(new Pet() { Name = "Peepers" });
 			family1.Pets.Add(new Pet() { Name = "Quacks" });
 			family1.Members.Add(new FamilyMember() { Name = "John Doe", Age = 42 });
@@ -32,6 +34,7 @@ namespace CaliburnTreeView.ViewModels
 			Families.Add(family1);
 
 			Family family2 = new Family() { Name = "The Moe's" };
+			family2.Pets = new ObservableCollection<Pet>();
 			family2.Pets.Add(new Pet() { Name = "Bar" });
 			family2.Pets.Add(new Pet() { Name = "Foo" });
 			family2.Members.Add(new FamilyMember() { Name = "Mark Moe", Age = 31 });
