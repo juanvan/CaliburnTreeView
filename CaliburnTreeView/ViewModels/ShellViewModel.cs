@@ -1,75 +1,28 @@
 ﻿using Caliburn.Micro;
-using CaliburnTreeView.Models;
-using CaliburnTreeView.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Text;
-using System.Windows;
+using System.Threading;
 
 namespace CaliburnTreeView.ViewModels
 {
-   public class ShellViewModel : Conductor<Screen>.Collection.AllActive// Conductor<object>
+    public class ShellViewModel : Conductor<Screen>
     {
-		private ObservableCollection<Family> _families;
-
-		public ObservableCollection<Family> Families
-		{
-			get { return _families; }
-			set
-			{
-				_families = value;
-				NotifyOfPropertyChange(() => Families);
-			}
-		}
-
-		private FamilyTreeViewModel _familyTreeViewModel;
-
-		public FamilyTreeViewModel FamilyTreeContent
-		{
-			get { return _familyTreeViewModel; }
-			set 
-			{
-				_familyTreeViewModel = value;
-				NotifyOfPropertyChange(() => FamilyTreeContent);
-			}
-		}
-
-
-		public ShellViewModel()
+        public ShellViewModel()
         {
-			FamilyTreeContent = IoC.Get<FamilyTreeViewModel>();
-			ActivateItemAsync(FamilyTreeContent, new System.Threading.CancellationToken());
-			ActivateItemAsync(IoC.Get<FamilyDetailViewModel>(), new System.Threading.CancellationToken());
-			//Families = new ObservableCollection<Family>();
+            ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new CancellationToken());
+        }
 
-			//Family family1 = new Family() { Name = "The Doe's" };
-			//family1.Members.Add(new FamilyMember() { Name = "John Doe", Age = 42 });
-			//family1.Members.Add(new FamilyMember() { Name = "Jane Doe", Age = 39 });
-			//family1.Members.Add(new FamilyMember() { Name = "Sammy Doe", Age = 13 });
-			//Families.Add(family1);
+        public void ShowFamilyTree()
+        {
+            ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new CancellationToken());
+        }
 
-			//Family family2 = new Family() { Name = "The Moe's" };
-			//family2.Members.Add(new FamilyMember() { Name = "Mark Moe", Age = 31 });
-			//family2.Members.Add(new FamilyMember() { Name = "Norma Moe", Age = 28 });
-			//Families.Add(family2);
+        public void ShowDashboard()
+        {
+            ActivateItemAsync(IoC.Get<DashboardViewModel>(), new CancellationToken());
+        }
 
-			// ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new System.Threading.CancellationToken());
-		}
-
-		public bool CanTalk(string name)
-		{
-			return !string.IsNullOrWhiteSpace(name);
-		}
-		public void Talk(string name)
-		{
-			MessageBox.Show(string.Format("Hello {0}!", name));
-		}
-		public void ViewPerson(object name)
-		{
-			MessageBox.Show(string.Format("Hello {0}!", name));
-		}
-
-	}
+        protected override void OnViewReady(object view)
+        {
+            base.OnViewReady(view);
+        }
+    }
 }

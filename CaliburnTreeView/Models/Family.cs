@@ -2,19 +2,35 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
+using System.Windows.Data;
 
 namespace CaliburnTreeView.Models
 {
-	public class Family
+	public class Family : PropertyChangedBase
 	{
 		public Family()
-		{
+		{ 
 			Members = new ObservableCollection<FamilyMember>();
+			Pets = new ObservableCollection<FamilyPet>();
+			
 		}
 
+		//public ObservableCollection<T> Children
+		//{
+		//	get
+		//	{
+		//		return new[]
+		//		{
+		//	new CollectionContainer(){ Collection = Members },
+		//	new CollectionContainer() {Collection = Pets}
+		//	};
+		//	}
+		//}
+
 		public string Name { get; set; }
-		public ObservableCollection<Pet> Pets { get; set; }
+		public ObservableCollection<FamilyPet> Pets { get; set; }
 		public ObservableCollection<FamilyMember> Members { get; set; }
 		public override string ToString()
 		{
@@ -22,17 +38,29 @@ namespace CaliburnTreeView.Models
 		}
 	}
 
-	public class Pet
+	public class FamilyPet
 	{
-		public string Name { get; set; }
-		
+		private string name;
+
+		public string Name
+		{
+			get { return name; }
+			set 
+			{ 
+				name = value;
+
+			}
+		}
+
+
+		public override string ToString()
+		{
+			return Name;
+		}
+
 	}
 
-	public class PetDetail
-	{
-	}
-
-	public class FamilyMember 
+	public class FamilyMember
 	{
 		public string Name { get; set; }
 		public int Age { get; set; }
