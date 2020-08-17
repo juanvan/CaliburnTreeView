@@ -14,7 +14,10 @@
         <Menu IsMainMenu="True" Grid.Row="0">
             <MenuItem Header="Change Views">
                 <MenuItem Header="Dashboard" x:Name="ShowDashboard"/>
+                <MenuItem Header="Employee" x:Name="ShowEmployeeTreeViewModel"/>
                 <MenuItem Header="FamilyTree" x:Name="ShowFamilyTree"/>
+                <MenuItem Header="MenuTree" x:Name="ShowMenuTreeViewModel"/>
+                
             </MenuItem>
         </Menu>
         <ContentControl x:Name="ActiveItem" Grid.Row="1"/>

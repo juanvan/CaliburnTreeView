@@ -9,53 +9,65 @@
              xmlns:cal="http://caliburnmicro.com"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <conv:CompositeCollectionConverter x:Key="CompositeCollectionConverter" />
-        <!--<ResourceDictionary>
-            <HierarchicalDataTemplate DataType="{x:Type models:MenuItem}" ItemsSource="{Binding Items}">
-                    <TextBlock Text="{Binding Title}" />
-                </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate DataType="{x:Type models:TrackItem}" ItemsSource="{Binding TrackItems}">
-                <TextBlock Text="{Binding TrackId}" />
-            </HierarchicalDataTemplate>
-            </ResourceDictionary>-->
-    </UserControl.Resources>
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="ContentA" x:Name="SampleText" Grid.Row="0"/>
-        <TreeView Name="trvMenu" ItemsSource="{Binding Roots}" Grid.Row="1">
-            <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type models:MenuItem}" > 
-                    <!--ItemTemplateSelector="{StaticResource LeafDataTemplateSelector}"-->
-                    <HierarchicalDataTemplate.ItemsSource>
-                            <MultiBinding Converter="{StaticResource CompositeCollectionConverter}">
-                                <Binding Path="Items" />
-                                <Binding Path="TrackItems"/>
-                            </MultiBinding>
-                        </HierarchicalDataTemplate.ItemsSource>
-                        <StackPanel Height="25" Orientation="Horizontal">
-                            <Image Height="20" Width="20" Source="Device.png"/>
-                            <TextBlock Margin="5,5,0,0" Text="{Binding Title}"/>
-                        <TextBlock Text="{Binding TrackId}"/>
-                    </StackPanel>
-                    </HierarchicalDataTemplate>
+    <!--<UserControl.Resources>
+        <DataTemplate x:Key="PetKey">
+            <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="MemberKey">
+            <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
+        <HierarchicalDataTemplate x:Key="FamilyKey"
+                                  ItemsSource="{Binding Members}"
+                                  ItemTemplate="{StaticResource MemberKey}"/>
+        <HierarchicalDataTemplate x:Key="PetMemberKey"
+                                  ItemsSource="{Binding Pets}"
+                                  ItemTemplate="{StaticResource PetKey}"/>
+        <HierarchicalDataTemplate x:Key="familiesTemplate"
+                          ItemsSource="{Binding Families}"
+                          ItemTemplate="{StaticResource }"/>
 
-                    <DataTemplate x:Key="FileKey" DataType="{x:Type models:TrackItem}">
-                    <StackPanel Height="25" Orientation="Horizontal" >
-                        <TextBlock Text="{Binding TrackId}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                
-                    <DataTemplate x:Key="HookKey" DataType="{x:Type models:MenuItem}">
-                    <StackPanel Height="25" Orientation="Horizontal" >
-                        <TextBlock Margin="5,5,0,0" Text="{Binding Title}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TreeView.Resources>
+        <HierarchicalDataTemplate x:Key="NavigatorDataTemplate" DataType="{x:Type models:Family}" ItemsSource="{Binding Families}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>-->
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--<TreeView x:Name="trvFamilies" 
+                  ItemTemplate="{StaticResource NavigatorDataTemplate}"
+                   ItemsSource="{Binding Families}"/>-->
+        <!--cal:Message.Attach="[Event SelectedItemChanged] = [Action ViewPerson($this.SelectedItem)]"-->
+        <TreeView Name="trvFamilies" ItemsSource="{Binding Families}" Grid.Row="0">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate ItemsSource="{Binding }" DataType="{x:Type models:FamilyMember}">
+                    <TextBlock Text="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+                <!--<HierarchicalDataTemplate x:Key="FamilyMemberKey" DataType="{x:Type models:Family}"  ItemsSource="{Binding Path=Members }" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image>
+                            <Image.Source>
+                                <BitmapImage UriSource="/WpfTutorialSamples;component/Images/BetaIcon.png"/>
+                            </Image.Source>
+                        </Image>
+                        <Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text=" [" Foreground="Blue" />
+                        <TextBlock Text="{Binding Members.Count}" Foreground="Blue" />
+                        <TextBlock Text="]" Foreground="Blue" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>-->
+                <!--<HierarchicalDataTemplate DataType="{x:Type models:FamilyPet}" ItemsSource="{Binding Path=Pets}">
+                    <TextBlock Text="{Binding Path=CountryCode}" />
+                </HierarchicalDataTemplate>-->
+
+            </TreeView.Resources>
         </TreeView>
 
     </Grid>
+
 </UserControl>

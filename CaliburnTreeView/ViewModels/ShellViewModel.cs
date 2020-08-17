@@ -19,7 +19,15 @@ namespace CaliburnTreeView.ViewModels
         {
             ActivateItemAsync(IoC.Get<DashboardViewModel>(), new CancellationToken());
         }
+        public void ShowMenuTreeViewModel()
+        {
+            ActivateItemAsync(IoC.Get<MenuTreeViewModel>(), new CancellationToken());
+        }
 
+        public void ShowEmployeeTreeViewModel()
+        {
+            ActivateItemAsync(IoC.Get<EmployeeViewModel>(), new CancellationToken());
+        }
         protected override void OnViewReady(object view)
         {
             base.OnViewReady(view);

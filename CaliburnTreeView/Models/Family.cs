@@ -38,7 +38,7 @@ namespace CaliburnTreeView.Models
 		}
 	}
 
-	public class FamilyPet
+	public class FamilyPet : PropertyChangedBase
 	{
 		private string name;
 
@@ -48,6 +48,7 @@ namespace CaliburnTreeView.Models
 			set 
 			{ 
 				name = value;
+				NotifyOfPropertyChange(() => Name);
 
 			}
 		}

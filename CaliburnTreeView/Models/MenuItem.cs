@@ -21,6 +21,6 @@ namespace CaliburnTreeView.Models
 
 	public class TrackItem
 	{
-		public string TrackId { get; set; }
+		public string Title { get; set; }
 	}
 }

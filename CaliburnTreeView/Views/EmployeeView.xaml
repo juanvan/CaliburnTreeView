@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="CaliburnTreeView.Views.EmployeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CaliburnTreeView.Views"
+             xmlns:models="clr-namespace:CaliburnTreeView.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--<models:EmployeeTypes x:Key="empTypes" />-->
+        <DataTemplate x:Key="managedEmployeeTemplate">
+            <TextBlock Text="{Binding Path=Name}" />
+        </DataTemplate>
+        <HierarchicalDataTemplate x:Key="employeeTemplate"
+                              ItemsSource="{Binding ManagedEmployees}"
+                              ItemTemplate="{StaticResource managedEmployeeTemplate}">
+            <TextBlock Text="{Binding Path=Name}" />
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate x:Key="employeeTypeTemplate"
+                              ItemsSource="{Binding Employees}"
+                              ItemTemplate="{StaticResource employeeTemplate}">
+            <TextBlock Text="{Binding Path=EmpType}" />
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Employee Types > Employees > Managed Employees"
+ />
+        <TreeView Grid.Row="1"
+              ItemTemplate="{StaticResource employeeTypeTemplate}"
+              ItemsSource="{Binding EmpTypes}"
+              Name="tvEmps" />
+    </Grid>
+</UserControl>

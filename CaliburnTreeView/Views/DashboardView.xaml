@@ -7,6 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="In Dashboard"/>
+        <!--<TreeView Name="tvwBuList" ItemsSource="{Binding BusinessunitList.Items}" HorizontalAlignment="Left" VerticalAlignment="Top" MinHeight="230" MinWidth="265" MaxHeight="230" MaxWidth="265">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type local:ContinentViewModel}" ItemsSource="{Binding Path=Continents}">
+                    <TextBlock Text="{Binding Path=ContinentCode}" />
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:CountryViewModel}" ItemsSource="{Binding Path=Countries}">
+                    <TextBlock Text="{Binding Path=CountryCode}" />
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type local:BusinessunitViewModel}">
+                    <RadioButton GroupName="BUGroup" Content="{Binding Path=BuCode}" />
+                </DataTemplate>
+            </TreeView.Resources>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    --><!--Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/--><!--
+                    <Setter Property="IsExpanded" Value="True"/>
+                    <Setter Property="Foreground" Value="Yellow"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>-->
     </Grid>
 </UserControl>
