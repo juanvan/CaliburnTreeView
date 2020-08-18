@@ -26,6 +26,7 @@ namespace CaliburnTreeView.ViewModels
             EmployeeType type;
             Employee emp;
             Employee managed;
+            Office office;
             EmpTypes = new List<EmployeeType>();
 
             type = new EmployeeType("Manager");
@@ -34,6 +35,10 @@ namespace CaliburnTreeView.ViewModels
             emp.ManagedEmployees.Add(managed);
             managed = new Employee("Tim");
             emp.ManagedEmployees.Add(managed);
+            office = new Office("Florida");
+            emp.ManagedOffices.Add(office);
+            office = new Office("New York");
+            emp.ManagedOffices.Add(office);
             type.Employees.Add(emp);
 
             emp = new Employee("Paul");
@@ -41,6 +46,10 @@ namespace CaliburnTreeView.ViewModels
             emp.ManagedEmployees.Add(managed);
             managed = new Employee("Cindy");
             emp.ManagedEmployees.Add(managed);
+            office = new Office("California");
+            emp.ManagedOffices.Add(office);
+            office = new Office("Arizona");
+            emp.ManagedOffices.Add(office);
             type.Employees.Add(emp);
             EmpTypes.Add(type);
 

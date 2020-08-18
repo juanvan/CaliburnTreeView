@@ -10,10 +10,12 @@ namespace CaliburnTreeView.Models
         {
             EmpType = empType;
             Employees = new List<Employee>();
+            Offices = new List<Office>();
         }
 
         public string EmpType { get; set; }
         public List<Employee> Employees { get; set; }
+        public List<Office> Offices { get; set; }
     }
 
     public class EmployeeTypes : List<EmployeeType>
@@ -23,12 +25,17 @@ namespace CaliburnTreeView.Models
             EmployeeType type;
             Employee emp;
             Employee managed;
+            Office office;
 
             type = new EmployeeType("Manager");
             emp = new Employee("Michael");
             managed = new Employee("John");
             emp.ManagedEmployees.Add(managed);
             managed = new Employee("Tim");
+            office = new Office("Florida");
+            emp.ManagedOffices.Add(office);
+            office = new Office("New York");
+            emp.ManagedOffices.Add(office);
             emp.ManagedEmployees.Add(managed);
             type.Employees.Add(emp);
 

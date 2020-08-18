@@ -9,18 +9,30 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <!--<models:EmployeeTypes x:Key="empTypes" />-->
+        <DataTemplate x:Key="officeNameTemplate">
+            <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
         <DataTemplate x:Key="managedEmployeeTemplate">
-            <TextBlock Text="{Binding Path=Name}" />
+            <TextBlock Text="{Binding Name}" />
         </DataTemplate>
         <HierarchicalDataTemplate x:Key="employeeTemplate"
                               ItemsSource="{Binding ManagedEmployees}"
                               ItemTemplate="{StaticResource managedEmployeeTemplate}">
-            <TextBlock Text="{Binding Path=Name}" />
+            <TextBlock Text="{Binding Name}" />
         </HierarchicalDataTemplate>
-        <HierarchicalDataTemplate x:Key="employeeTypeTemplate"
-                              ItemsSource="{Binding Employees}"
-                              ItemTemplate="{StaticResource employeeTemplate}">
-            <TextBlock Text="{Binding Path=EmpType}" />
+        <HierarchicalDataTemplate x:Key="officeTemplate" ItemsSource="{Binding ManagedOffices}">
+            <!--ItemTemplate="{StaticResource officeNameTemplate}"-->
+            
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate x:Key="employeeTypeTemplate">
+            <!--ItemsSource="{Binding Employees}"
+                              ItemTemplate="{StaticResource officeTemplate}">-->
+            <TreeViewItem Header="{Binding EmpType}">
+                <TreeView ItemsSource="{Binding Employees}"
+                      ItemTemplate="{StaticResource employeeTemplate}"/>
+                <TreeView ItemsSource="{Binding Offices}"
+                      ItemTemplate="{StaticResource officeTemplate}"/>
+            </TreeViewItem>
         </HierarchicalDataTemplate>
     </UserControl.Resources>
     <Grid>
