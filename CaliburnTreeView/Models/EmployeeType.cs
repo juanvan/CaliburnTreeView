@@ -18,40 +18,40 @@ namespace CaliburnTreeView.Models
         public List<Office> Offices { get; set; }
     }
 
-    public class EmployeeTypes : List<EmployeeType>
-    {
-        public EmployeeTypes()
-        {
-            EmployeeType type;
-            Employee emp;
-            Employee managed;
-            Office office;
+    //public class EmployeeTypes : List<EmployeeType>
+    //{
+    //    public EmployeeTypes()
+    //    {
+    //        EmployeeType type;
+    //        Employee emp;
+    //        Employee managed;
+    //        Office office;
 
-            type = new EmployeeType("Manager");
-            emp = new Employee("Michael");
-            managed = new Employee("John");
-            emp.ManagedEmployees.Add(managed);
-            managed = new Employee("Tim");
-            office = new Office("Florida");
-            emp.ManagedOffices.Add(office);
-            office = new Office("New York");
-            emp.ManagedOffices.Add(office);
-            emp.ManagedEmployees.Add(managed);
-            type.Employees.Add(emp);
+    //        type = new EmployeeType("Manager");
+    //        emp = new Employee("Michael");
+    //        managed = new Employee("John");
+    //        emp.ManagedEmployees.Add(managed);
+    //        managed = new Employee("Tim");
+    //        office = new Office("Florida");
+    //        emp.ManagedOffices.Add(office);
+    //        office = new Office("New York");
+    //        emp.ManagedOffices.Add(office);
+    //        emp.ManagedEmployees.Add(managed);
+    //        type.Employees.Add(emp);
 
-            emp = new Employee("Paul");
-            managed = new Employee("Michael");
-            emp.ManagedEmployees.Add(managed);
-            managed = new Employee("Cindy");
-            emp.ManagedEmployees.Add(managed);
-            type.Employees.Add(emp);
-            this.Add(type);
+    //        emp = new Employee("Paul");
+    //        managed = new Employee("Michael");
+    //        emp.ManagedEmployees.Add(managed);
+    //        managed = new Employee("Cindy");
+    //        emp.ManagedEmployees.Add(managed);
+    //        type.Employees.Add(emp);
+    //        this.Add(type);
 
-            type = new EmployeeType("Project Managers");
-            type.Employees.Add(new Employee("Tim"));
-            type.Employees.Add(new Employee("John"));
-            type.Employees.Add(new Employee("David"));
-            this.Add(type);
-        }
-    }
+    //        type = new EmployeeType("Project Managers");
+    //        type.Employees.Add(new Employee("Tim"));
+    //        type.Employees.Add(new Employee("John"));
+    //        type.Employees.Add(new Employee("David"));
+    //        this.Add(type);
+    //    }
+    //}
 }

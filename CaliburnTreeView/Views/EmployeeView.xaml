@@ -9,38 +9,42 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <!--<models:EmployeeTypes x:Key="empTypes" />-->
-        <DataTemplate x:Key="officeNameTemplate">
+        <!--<DataTemplate x:Key="officeNameTemplate">
             <TextBlock Text="{Binding Name}"/>
-        </DataTemplate>
+        </DataTemplate>-->
         <DataTemplate x:Key="managedEmployeeTemplate">
             <TextBlock Text="{Binding Name}" />
         </DataTemplate>
 
-        <HierarchicalDataTemplate x:Key="officeStateTemplate" ItemsSource="{Binding Cities}">
+        <HierarchicalDataTemplate x:Key="cityTemplate" ItemsSource="{Binding Cities}">
             <TextBlock Text="{Binding City}"/>
         </HierarchicalDataTemplate>
-        <!--<HierarchicalDataTemplate x:Key="officeTemplate" ItemsSource="{Binding ManagedOffices}"
-            ItemTemplate="{StaticResource officeStateTemplate}">
-            <TextBlock Text="{Binding State}" />
-        </HierarchicalDataTemplate>-->
+    
         <HierarchicalDataTemplate x:Key="employeeTemplate"
                               ItemsSource="{Binding ManagedEmployees}"
                               ItemTemplate="{StaticResource managedEmployeeTemplate}">
             <TextBlock Text="{Binding Name}" />
         </HierarchicalDataTemplate>
 
-        <HierarchicalDataTemplate x:Key="officeTemplate">
-            <TreeViewItem Header="{Binding State}">
-                <TreeView ItemsSource="{Binding Offices}"
-                          ItemTemplate="{StaticResource officeStateTemplate}"/>
-            </TreeViewItem>
+        <!--<HierarchicalDataTemplate x:Key="officeTemplate"
+                                  ItemsSource="{Binding Offices}"
+                          ItemTemplate="{StaticResource officeStateTemplate}">
+            <TextBlock Text="{Binding State}"/>
+        </HierarchicalDataTemplate>-->
+
+        <HierarchicalDataTemplate x:Key="officeStateTemplate"
+                                  ItemsSource="{Binding Cities}"
+                                  ItemTemplate="{StaticResource cityTemplate}">
+            <TextBlock Text="{Binding Name}"/>
         </HierarchicalDataTemplate>
+
         <HierarchicalDataTemplate x:Key="employeeTypeTemplate">
             <TreeViewItem Header="{Binding EmpType}">
                 <TreeView ItemsSource="{Binding Employees}"
                       ItemTemplate="{StaticResource employeeTemplate}"/>
-                <TreeViewItem Header="States" ItemsSource="{Binding Offices}"
-                      ItemTemplate="{StaticResource officeTemplate}"/>
+  
+                <TreeView ItemsSource="{Binding Offices}"
+                      ItemTemplate="{StaticResource officeStateTemplate}"/>
             </TreeViewItem>
         </HierarchicalDataTemplate>
     </UserControl.Resources>

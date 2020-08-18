@@ -63,9 +63,9 @@ namespace CaliburnTreeView.ViewModels
             managed = new Employee("Cindy");
             emp.ManagedEmployees.Add(managed);
             office = new Office("California");
-            emp.ManagedOffices.Add(office);
+            //emp.ManagedOffices.Add(office);
             office = new Office("Arizona");
-            emp.ManagedOffices.Add(office);
+            //emp.ManagedOffices.Add(office);
             type.Employees.Add(emp);
             EmpTypes.Add(type);
 
@@ -73,6 +73,22 @@ namespace CaliburnTreeView.ViewModels
             type.Employees.Add(new Employee("Tim"));
             type.Employees.Add(new Employee("John"));
             type.Employees.Add(new Employee("David"));
+            office = new Office("Florida");
+            city = new OfficeCity("Daytona Beach");
+            office.Cities.Add(city);
+            city = new OfficeCity("Del Ray");
+            office.Cities.Add(city);
+            city = new OfficeCity("Melborne");
+            office.Cities.Add(city);
+            type.Offices.Add(office);
+            office = new Office("New York");
+            city = new OfficeCity("New York");
+            office.Cities.Add(city);
+            city = new OfficeCity("Manhattan");
+            office.Cities.Add(city);
+            city = new OfficeCity("Brooyklen");
+            office.Cities.Add(city);
+            type.Offices.Add(office);
             EmpTypes.Add(type);
         }
 	}
