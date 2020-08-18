@@ -15,19 +15,31 @@
         <DataTemplate x:Key="managedEmployeeTemplate">
             <TextBlock Text="{Binding Name}" />
         </DataTemplate>
+
+        <HierarchicalDataTemplate x:Key="officeStateTemplate" ItemsSource="{Binding Cities}">
+            <TextBlock Text="{Binding City}"/>
+        </HierarchicalDataTemplate>
+        <!--<HierarchicalDataTemplate x:Key="officeTemplate" ItemsSource="{Binding ManagedOffices}"
+            ItemTemplate="{StaticResource officeStateTemplate}">
+            <TextBlock Text="{Binding State}" />
+        </HierarchicalDataTemplate>-->
         <HierarchicalDataTemplate x:Key="employeeTemplate"
                               ItemsSource="{Binding ManagedEmployees}"
                               ItemTemplate="{StaticResource managedEmployeeTemplate}">
             <TextBlock Text="{Binding Name}" />
         </HierarchicalDataTemplate>
-        <HierarchicalDataTemplate x:Key="officeTemplate" ItemsSource="{Binding ManagedOffices}">
-            <TextBlock Text="{Binding Name}" />
+
+        <HierarchicalDataTemplate x:Key="officeTemplate">
+            <TreeViewItem Header="{Binding State}">
+                <TreeView ItemsSource="{Binding Offices}"
+                          ItemTemplate="{StaticResource officeStateTemplate}"/>
+            </TreeViewItem>
         </HierarchicalDataTemplate>
         <HierarchicalDataTemplate x:Key="employeeTypeTemplate">
             <TreeViewItem Header="{Binding EmpType}">
                 <TreeView ItemsSource="{Binding Employees}"
                       ItemTemplate="{StaticResource employeeTemplate}"/>
-                <TreeView ItemsSource="{Binding Offices}"
+                <TreeViewItem Header="States" ItemsSource="{Binding Offices}"
                       ItemTemplate="{StaticResource officeTemplate}"/>
             </TreeViewItem>
         </HierarchicalDataTemplate>

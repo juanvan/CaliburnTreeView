@@ -20,11 +20,23 @@ namespace CaliburnTreeView.Models
 
    public class Office
     {
-        public Office(string name)
+        public Office(string state)
         {
-            Name = name;
+            State = state;
+            Cities = new List<OfficeCity>();
         }
 
-        public string Name { get; set; }
+        public string State { get; set; }
+        public List<OfficeCity> Cities { get; set; }
+    }
+
+    public class OfficeCity
+    {
+        public OfficeCity(string city)
+        {
+            City = city;
+        }
+
+        public string City { get; set; }
     }
 }
