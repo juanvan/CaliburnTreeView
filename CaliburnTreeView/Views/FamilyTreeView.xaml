@@ -9,8 +9,7 @@
              xmlns:cal="http://caliburnmicro.com"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--<UserControl.Resources>
-        <DataTemplate x:Key="PetKey">
+    <!--    <DataTemplate x:Key="PetKey">
             <TextBlock Text="{Binding Name}"/>
         </DataTemplate>
         <DataTemplate x:Key="MemberKey">
@@ -30,8 +29,45 @@
             <StackPanel>
                 <TextBlock Text="{Binding Name}"/>
             </StackPanel>
+        </HierarchicalDataTemplate>-->
+    
+    <UserControl.Resources>
+        <Style TargetType="TreeView">
+            <Style.Setters>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TreeView">
+                            <Border Name="Border" Background="Transparent" BorderThickness="0"
+                                                >
+                                <ScrollViewer Background="Transparent" Focusable="False"
+                                                          CanContentScroll="False"
+                                                          BorderThickness="0">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+        <HierarchicalDataTemplate x:Key="familieTemplate"
+                                  ItemsSource="{Binding Members}">
+            <TextBlock Text="{Binding Name}"/>
         </HierarchicalDataTemplate>
-    </UserControl.Resources>-->
+
+        <HierarchicalDataTemplate x:Key="petTemplate"
+                                  ItemsSource="{Binding Pets}">
+            <TextBlock Text="{Binding Name}"/>
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate x:Key="familyTypeTemplate" ItemsSource="{Binding Families}">
+            <TreeViewItem Header="{Binding Name}">
+                <TreeView ItemsSource="{Binding Members}"
+                          ItemTemplate="{StaticResource familieTemplate}"/>
+                <TreeView ItemsSource="{Binding Pets}"
+                          ItemTemplate="{StaticResource petTemplate}"/>
+            </TreeViewItem>
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -42,31 +78,12 @@
                   ItemTemplate="{StaticResource NavigatorDataTemplate}"
                    ItemsSource="{Binding Families}"/>-->
         <!--cal:Message.Attach="[Event SelectedItemChanged] = [Action ViewPerson($this.SelectedItem)]"-->
-        <TreeView Name="trvFamilies" ItemsSource="{Binding Families}" Grid.Row="0">
-            <TreeView.Resources>
-                <HierarchicalDataTemplate ItemsSource="{Binding }" DataType="{x:Type models:FamilyMember}">
-                    <TextBlock Text="{Binding Name}"/>
-                </HierarchicalDataTemplate>
-                <!--<HierarchicalDataTemplate x:Key="FamilyMemberKey" DataType="{x:Type models:Family}"  ItemsSource="{Binding Path=Members }" >
-                    <StackPanel Orientation="Horizontal">
-                        <Image>
-                            <Image.Source>
-                                <BitmapImage UriSource="/WpfTutorialSamples;component/Images/BetaIcon.png"/>
-                            </Image.Source>
-                        </Image>
-                        <Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock Text=" [" Foreground="Blue" />
-                        <TextBlock Text="{Binding Members.Count}" Foreground="Blue" />
-                        <TextBlock Text="]" Foreground="Blue" />
-                    </StackPanel>
-                </HierarchicalDataTemplate>-->
-                <!--<HierarchicalDataTemplate DataType="{x:Type models:FamilyPet}" ItemsSource="{Binding Path=Pets}">
-                    <TextBlock Text="{Binding Path=CountryCode}" />
-                </HierarchicalDataTemplate>-->
+        <TreeView Name="trvFamilies" 
+                  ItemTemplate="{StaticResource familyTypeTemplate}"
+                  ItemsSource="{Binding Families}" 
+                  Grid.Row="0"/>
 
-            </TreeView.Resources>
-        </TreeView>
+
 
     </Grid>
 

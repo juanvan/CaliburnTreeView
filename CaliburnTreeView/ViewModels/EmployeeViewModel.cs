@@ -31,6 +31,9 @@ namespace CaliburnTreeView.ViewModels
 
             type = new EmployeeType("Manager");
             emp = new Employee("Michael");
+            office = new Office("Florida");
+            emp.ManagedOffices.Add(office);
+            type.Offices.Add(office);
             managed = new Employee("John");
             emp.ManagedEmployees.Add(managed);
             managed = new Employee("Tim");

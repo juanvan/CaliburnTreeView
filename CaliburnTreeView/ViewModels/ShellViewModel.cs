@@ -3,6 +3,13 @@ using System.Threading;
 
 namespace CaliburnTreeView.ViewModels
 {
+    //https://www.syncfusion.com/kb/4832/how-to-create-hierarchicaldatatemplate-for-the-treeviewadv
+    //https://stackoverflow.com/questions/17726445/set-treeview-hierarchicaldatatemplate-with-2-levels-in-wpf
+    //https://medium.com/@BrunoLM7/wpf-treeview-with-hierarchical-data-1e064f3fa67d
+    //https://www.codemag.com/Article/1401031/Using-the-WPF-Tree-View-with-Multiple-Levels
+    //https://www.syncfusion.com/faq/wpf/treeview/how-do-i-bind-a-treeview-to-a-hierarchical-list-where-some-nodes-have-multiple-child-lists
+    //https://stackoverflow.com/questions/36006256/wpf-treeview-add-custom-header-to-hierarchicaldatatemplates
+    //https://stackoverflow.com/questions/28993566/simple-nested-treeview-xaml-structure
     public class ShellViewModel : Conductor<Screen>
     {
         public ShellViewModel()

@@ -21,12 +21,9 @@
             <TextBlock Text="{Binding Name}" />
         </HierarchicalDataTemplate>
         <HierarchicalDataTemplate x:Key="officeTemplate" ItemsSource="{Binding ManagedOffices}">
-            <!--ItemTemplate="{StaticResource officeNameTemplate}"-->
-            
+            <TextBlock Text="{Binding Name}" />
         </HierarchicalDataTemplate>
         <HierarchicalDataTemplate x:Key="employeeTypeTemplate">
-            <!--ItemsSource="{Binding Employees}"
-                              ItemTemplate="{StaticResource officeTemplate}">-->
             <TreeViewItem Header="{Binding EmpType}">
                 <TreeView ItemsSource="{Binding Employees}"
                       ItemTemplate="{StaticResource employeeTemplate}"/>
