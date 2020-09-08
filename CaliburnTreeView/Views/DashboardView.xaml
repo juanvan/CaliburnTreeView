@@ -7,6 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <TreeView x:Name="trvTestActions" Grid.Row="0">
+            <TreeViewItem Header="TestOne">
+                <TreeViewItem Header="ClickTwo"/>
+            </TreeViewItem>
+        </TreeView>
+        <Button Content="TestCLick" Grid.Row="1"/>
         <!--<TreeView Name="tvwBuList" ItemsSource="{Binding BusinessunitList.Items}" HorizontalAlignment="Left" VerticalAlignment="Top" MinHeight="230" MinWidth="265" MaxHeight="230" MaxWidth="265">
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type local:ContinentViewModel}" ItemsSource="{Binding Path=Continents}">

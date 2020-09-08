@@ -14,11 +14,12 @@ namespace CaliburnTreeView.ViewModels
     {
         public ShellViewModel()
         {
-            ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new CancellationToken());
+            ActivateItemAsync(IoC.Get<EmployeeViewModel>(), new CancellationToken());
         }
 
         public void ShowFamilyTree()
         {
+            
             ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new CancellationToken());
         }
 

@@ -9,28 +9,6 @@
              xmlns:cal="http://caliburnmicro.com"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--    <DataTemplate x:Key="PetKey">
-            <TextBlock Text="{Binding Name}"/>
-        </DataTemplate>
-        <DataTemplate x:Key="MemberKey">
-            <TextBlock Text="{Binding Name}"/>
-        </DataTemplate>
-        <HierarchicalDataTemplate x:Key="FamilyKey"
-                                  ItemsSource="{Binding Members}"
-                                  ItemTemplate="{StaticResource MemberKey}"/>
-        <HierarchicalDataTemplate x:Key="PetMemberKey"
-                                  ItemsSource="{Binding Pets}"
-                                  ItemTemplate="{StaticResource PetKey}"/>
-        <HierarchicalDataTemplate x:Key="familiesTemplate"
-                          ItemsSource="{Binding Families}"
-                          ItemTemplate="{StaticResource }"/>
-
-        <HierarchicalDataTemplate x:Key="NavigatorDataTemplate" DataType="{x:Type models:Family}" ItemsSource="{Binding Families}">
-            <StackPanel>
-                <TextBlock Text="{Binding Name}"/>
-            </StackPanel>
-        </HierarchicalDataTemplate>-->
-    
     <UserControl.Resources>
         <Style TargetType="TreeView">
             <Style.Setters>
@@ -62,8 +40,10 @@
         <HierarchicalDataTemplate x:Key="familyTypeTemplate" ItemsSource="{Binding Families}">
             <TreeViewItem Header="{Binding Name}">
                 <TreeView ItemsSource="{Binding Members}"
+                          cal:Message.Attach="[Event SelectedItemChanged] = [Action ViewPerson($this.SelectedItem)]"
                           ItemTemplate="{StaticResource familieTemplate}"/>
                 <TreeView ItemsSource="{Binding Pets}"
+                          cal:Message.Attach="[Event SelectedItemChanged] = [Action ViewPerson($this.SelectedItem)]"
                           ItemTemplate="{StaticResource petTemplate}"/>
             </TreeViewItem>
         </HierarchicalDataTemplate>
@@ -74,17 +54,10 @@
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!--<TreeView x:Name="trvFamilies" 
-                  ItemTemplate="{StaticResource NavigatorDataTemplate}"
-                   ItemsSource="{Binding Families}"/>-->
-        <!--cal:Message.Attach="[Event SelectedItemChanged] = [Action ViewPerson($this.SelectedItem)]"-->
         <TreeView Name="trvFamilies" 
                   ItemTemplate="{StaticResource familyTypeTemplate}"
                   ItemsSource="{Binding Families}" 
                   Grid.Row="0"/>
-
-
-
     </Grid>
 
 </UserControl>

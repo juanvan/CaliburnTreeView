@@ -1,11 +1,30 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CaliburnTreeView.Models
 {
-    public class Employee
+    public class Employee : PropertyChangedBase
     {
+        private bool isExpanded;
+
+        public bool IsExpanded
+        {
+            get { return isExpanded; }
+            set { isExpanded = value;
+                NotifyOfPropertyChange(() => IsExpanded); }
+        }
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set { isSelected = value;
+                NotifyOfPropertyChange(() => IsSelected);
+            }
+        }
+
         public Employee(string name)
         {
             Name = name;
@@ -18,8 +37,29 @@ namespace CaliburnTreeView.Models
        // public List<Office> ManagedOffices { get; set; }
     }
 
-   public class Office
+   public class Office : PropertyChangedBase
     {
+        private bool isExpanded;
+        public bool IsExpanded
+        {
+            get { return isExpanded; }
+            set
+            {
+                isExpanded = value;
+                NotifyOfPropertyChange(() => IsExpanded);
+            }
+        }
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                NotifyOfPropertyChange(() => IsSelected);
+            }
+        }
         public Office(string name)
         {
             Name = name;
@@ -30,8 +70,29 @@ namespace CaliburnTreeView.Models
         public List<OfficeCity> Cities { get; set; }
     }
 
-    public class OfficeCity
+    public class OfficeCity : PropertyChangedBase
     {
+        private bool isExpanded;
+        public bool IsExpanded
+        {
+            get { return isExpanded; }
+            set
+            {
+                isExpanded = value;
+                NotifyOfPropertyChange(() => IsExpanded);
+            }
+        }
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                NotifyOfPropertyChange(() => IsSelected);
+            }
+        }
         public OfficeCity(string city)
         {
             City = city;
