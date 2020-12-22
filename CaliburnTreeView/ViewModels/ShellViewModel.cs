@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using CaliburnTreeView.Models;
+using System.Collections.ObjectModel;
 using System.Threading;
 
 namespace CaliburnTreeView.ViewModels
@@ -12,9 +14,23 @@ namespace CaliburnTreeView.ViewModels
     //https://stackoverflow.com/questions/28993566/simple-nested-treeview-xaml-structure
     public class ShellViewModel : Conductor<Screen>
     {
+        private ObservableCollection<TopMenuItem> _MainMenu;
+
+        public ObservableCollection<TopMenuItem> MainMenu
+        {
+            get { return _MainMenu; }
+            set
+            {
+                _MainMenu = value;
+                NotifyOfPropertyChange(() => MainMenu);
+            }
+        }
+
         public ShellViewModel()
         {
-            ActivateItemAsync(IoC.Get<EmployeeViewModel>(), new CancellationToken());
+           // MainMenu = new ObservableCollection<TopMenuItem>();
+            //MainMenu.Add(new TopMenuItem("Test", "Test1"));
+            ActivateItemAsync(IoC.Get<DataGridDemoViewModel>(), new CancellationToken());
         }
 
         public void ShowFamilyTree()
