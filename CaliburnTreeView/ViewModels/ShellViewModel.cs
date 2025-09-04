@@ -14,6 +14,7 @@ namespace CaliburnTreeView.ViewModels
     //https://stackoverflow.com/questions/28993566/simple-nested-treeview-xaml-structure
     public class ShellViewModel : Conductor<Screen>
     {
+        private readonly IWindowManager _windowManager;
         private ObservableCollection<TopMenuItem> _MainMenu;
 
         public ObservableCollection<TopMenuItem> MainMenu
@@ -26,32 +27,40 @@ namespace CaliburnTreeView.ViewModels
             }
         }
 
-        public ShellViewModel()
+        public ShellViewModel(IWindowManager windowManager)
         {
+            _windowManager = windowManager;
            // MainMenu = new ObservableCollection<TopMenuItem>();
             //MainMenu.Add(new TopMenuItem("Test", "Test1"));
-            ActivateItemAsync(IoC.Get<DataGridDemoViewModel>(), new CancellationToken());
+            _ = ActivateItemAsync(IoC.Get<DataGridDemoViewModel>(), new CancellationToken());
         }
 
-        public void ShowFamilyTree()
+        public async void ShowFamilyTree()
         {
-            
-            ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new CancellationToken());
+            await ActivateItemAsync(IoC.Get<FamilyTreeViewModel>(), new CancellationToken());
         }
 
-        public void ShowDashboard()
+        public async void ShowDashboard()
         {
-            ActivateItemAsync(IoC.Get<DashboardViewModel>(), new CancellationToken());
+            await ActivateItemAsync(IoC.Get<DashboardViewModel>(), new CancellationToken());
         }
-        public void ShowMenuTreeViewModel()
+        
+        public async void ShowMenuTreeViewModel()
         {
-            ActivateItemAsync(IoC.Get<MenuTreeViewModel>(), new CancellationToken());
+            await ActivateItemAsync(IoC.Get<MenuTreeViewModel>(), new CancellationToken());
         }
 
-        public void ShowEmployeeTreeViewModel()
+        public async void ShowEmployeeTreeViewModel()
         {
-            ActivateItemAsync(IoC.Get<EmployeeViewModel>(), new CancellationToken());
+            await ActivateItemAsync(IoC.Get<EmployeeViewModel>(), new CancellationToken());
         }
+
+        public async void OpenNewWindow()
+        {
+            var newWindowViewModel = IoC.Get<NewWindowViewModel>();
+            await _windowManager.ShowWindowAsync(newWindowViewModel);
+        }
+
         protected override void OnViewReady(object view)
         {
             base.OnViewReady(view);
