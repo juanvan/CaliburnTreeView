@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CaliburnTreeView.Views"
         mc:Ignorable="d"
-        Title="ShellView" Height="450" Width="800">
+        Title="CaliburnTreeView - Caliburn.Micro 5.0 Beta Demo" Height="450" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="B2VConverter"/>
     </Window.Resources>
@@ -14,42 +14,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--<Menu DockPanel.Dock="Top" x:Name="MainMenu" ItemsSource="{Binding Path=MainMenu}">
-            <Menu.ItemContainerStyle>
-                <Style>
-                    <Setter Property="MenuItem.Header" Value="{Binding Path=Header}" />
-                    <Setter Property="MenuItem.ItemsSource" Value="{Binding Path=Items}" />
-                    <Setter Property="MenuItem.Icon" Value="{Binding Path=Icon}" />
-                    <Setter Property="MenuItem.IsCheckable" Value="{Binding Path=IsCheckable}" />
-                    <Setter Property="MenuItem.IsChecked" Value="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                    <Setter Property="MenuItem.Command" Value="{Binding Path=Command}" />
-                    --><!--<Setter Property="MenuItem.CommandParameter" Value="{Binding Path=IsChecked}"/>--><!--
-                    <Setter Property="MenuItem.CommandParameter" Value="{Binding Path=.}"/>
-                    <Setter Property="MenuItem.InputGestureText" Value="{Binding Path=InputGestureText}"/>
-                    <Setter Property="MenuItem.ToolTip" Value="{Binding Path=ToolTip}" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsSeparator}" Value="true">
-                            <Setter Property="MenuItem.Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type MenuItem}">
-                                        <Separator Style="{DynamicResource {x:Static MenuItem.SeparatorStyleKey}}" />
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Menu.ItemContainerStyle>
-        </Menu>
-        <StackPanel>
-            <CheckBox Name="Circle" IsChecked="True">Show Circle</CheckBox>
-            <Ellipse Width="50" Height="50" Fill="Red"
-                HorizontalAlignment="Left" Margin="0 10 0 0"
-        Visibility="{Binding ElementName=Circle,Path=IsChecked,
-                             Converter={StaticResource B2VConverter}}"/>
-            <Rectangle Width="50" Height="50"
-                   HorizontalAlignment="Left" Fill="Blue" Margin="0 10 0 0"/>
-        </StackPanel>-->
+        
+        <!-- Navigation Toolbar -->
+        <ToolBar Grid.Row="0" Background="LightGray">
+            <Button x:Name="ShowDashboard" Content="Dashboard" Margin="2"/>
+            <Button x:Name="ShowFamilyTree" Content="Family Tree" Margin="2"/>
+            <Button x:Name="ShowMenuTreeViewModel" Content="Menu Tree" Margin="2"/>
+            <Button x:Name="ShowEmployeeTreeViewModel" Content="Employee Tree" Margin="2"/>
+            <Separator/>
+            <Button x:Name="OpenNewWindow" Content="Open New Window" Margin="2" FontWeight="Bold" Background="LightBlue"/>
+        </ToolBar>
+        
         <ContentControl x:Name="ActiveItem" Grid.Row="1"/>
     </Grid>
 </Window>
